@@ -1,72 +1,96 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap");
 
 * {
-    font-family: "Urbanist", sans-serif;}
+  font-family: "Urbanist", sans-serif;
+}
 
 .instagram-logo {
-    width: 325px;
-    height: auto;
+  width: 325px;
+  height: auto;
 }
 
 .space {
-    height: 80px;
+  height: 80px;
 }
 
 .vertical-line {
-    border-left: 2px solid black;
-    height: 550px;
-    margin: 0 auto;
+  border-left: 2px solid black;
+  height: 550px;
+  margin: 0 auto;
 }
 
 .block {
-    width: 120px;
-    height: 60px;
-    background: white;
-    border-radius: 9px;
-    box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
-    cursor: pointer;
-    transition: all 0.25s ease-out;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    user-select: none;
+  width: 120px;
+  height: 60px;
+  background: white;
+  border-radius: 9px;
+  box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+
+
+@media (max-width: 575.9px) {
+  .block {
+    width: 260px;
   }
-  @media (max-width: 575.9px) {
-    .block {
-      width: 260px;
-    }
-  }
-  .block .heart-icon {
-    user-select: none;
-    position: absolute;
-    left: 20%;
-    top: 53%;
-    transform: translate(-20%, -50%);
-    fill: transparent;
-    transition: transform 0.25s ease-out;
-    transform-origin: 50% 50%;
-  }
-  .block .heart-icon .fill-color-shape {
-    fill: transparent;
-  }
-  .block .heart-icon.isLiked {
-    filter: drop-shadow(0 3px 5px #c44133);
-  }
-  .block .heart-icon.isLiked .fill-color-shape {
-    transition: fill 0.5s linear;
-    fill: #e74c3c;
-  }
-  .block .heart-icon:hover {
-    transform: translate(-20%, calc(-50% - 3px)) scale(1.03);
-  }
-  .block .number-of-likes {
-    font-size: 50px;
-    user-select: none;
-    position: absolute;
-    left: 80%;
-    top: 53%;
-    transform: translate(-80%, -50%);
-    color: #292d34;
-    user-select: none;
-  }
+}
+
+.block .heart-icon {
+  user-select: none;
+  position: absolute;
+  left: 20%;
+  top: 53%;
+  transform: translate(-20%, -50%);
+  fill: transparent;
+  transition: transform 0.25s ease-out;
+  transform-origin: 50% 50%;
+}
+
+.block .heart-icon .fill-color-shape {
+  fill: transparent;
+}
+
+.block .heart-icon.isLiked {
+  filter: drop-shadow(0 3px 5px #c44133);
+}
+
+.block .heart-icon.isLiked .fill-color-shape {
+  transition: fill 0.5s linear;
+  fill: #e74c3c;
+}
+
+.block .heart-icon:hover {
+  transform: translate(-20%, calc(-50% - 3px)) scale(1.03);
+}
+
+.block .number-of-likes {
+  font-size: 50px;
+  user-select: none;
+  position: absolute;
+  left: 80%;
+  top: 53%;
+  transform: translate(-80%, -50%);
+  color: #292d34;
+  user-select: none;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-image {
+  flex: 1 0 100%;
+  margin: 10px;
+}
+
+#avatar {
+  width: 50px;
+}
