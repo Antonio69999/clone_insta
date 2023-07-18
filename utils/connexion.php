@@ -1,5 +1,5 @@
 <?php
-$dns = 'mysql:host=localhost;dbname=instagram';
+$dns = 'mysql:host=localhost;dbname=clone_insta';
 $user = 'root';
 $password = '';
 
