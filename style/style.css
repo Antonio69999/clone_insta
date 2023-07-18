@@ -34,6 +34,8 @@
   user-select: none;
 }
 
+
+
 @media (max-width: 575.9px) {
   .block {
     width: 260px;
@@ -77,4 +79,18 @@
   transform: translate(-80%, -50%);
   color: #292d34;
   user-select: none;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-image {
+  flex: 1 0 100%;
+  margin: 10px;
+}
+
+#avatar {
+  width: 50px;
 }

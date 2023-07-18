@@ -22,7 +22,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <div class="container">
                     <div class="space">
                         <div class="d-flex align-items-center">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7 vertical-line">
+            <div class="col-6 vertical-line">
                 For you
                 <div class="block">
                     <svg class="heart-icon" width="50" height="77" viewBox="0 0 106 97" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,32 +59,43 @@
                         <input type="file" name="file">
                         <button type="submit">Submit</button>
                     </form>
-                    <?php $sql = 'SELECT * FROM `pictures`';
+                    <div class="image-gallery">
+                        <?php
+                        $sql = 'SELECT * FROM `pictures`';
+                        $query = $db->prepare($sql);
+                        $query->execute();
+                        $pictures = $query->fetchAll();
 
-                    // On prépare la requête
-                    $query = $db->prepare($sql);
-
-                    // On exécute la requête
-                    $query->execute();
-
-                    // On stocke le résultat dans un tableau associatif
-                    $pictures = $query->fetch();
-                    while ($picture = $query->fetch()) {
-                        // var_dump($picture);
-                        echo "<img src='./upload/" . $picture['pictures'] . "' width='600px' ><br>";
-                    }
-                    ?>
+                        foreach ($pictures as $picture) {
+                            echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
+                        }
+                        ?>
+                    </div>
                 </div>
+
                 <hr class="border-dark border-3 opacity-100">
-            </div>
-            <div class="col vertical-line">
-                User list
+                <div class="col-6">
+                    <!-- Right column -->
+                    <div class="vertical-line">
+                        <h2>Liste profil:</h2>
+                        <a href="./add_avatar.php">Add profile pictures</a>
+                        <?php
+                        $sql = 'SELECT * FROM `avatars`';
+                        $query = $db->prepare($sql);
+                        $query->execute();
+                        $avatars = $query->fetchAll();
+
+                        foreach ($avatars as $avatar) {
+                            echo "<img id='avatar' src='./upload_avatar/" . $avatar['avatars'] . "' class='gallery-image'>";
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./script/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./script/main.js"></script>
 </body>
 
 </html>
