@@ -1,8 +1,8 @@
 <?php require_once('../utils/connexion.php'); ?>
 <?php session_start(); ?>
 
-
 <?php
+
 
 if (!empty($_POST['username'])
     && !empty($_POST['pseudos'])){
@@ -12,7 +12,7 @@ if (!empty($_POST['username'])
     $user = $selectUserQuery->fetch();
     if ($user) {
         $_SESSION['user'] = $user;
-        header('Location: ../instagram.php');
+        header('Location: ../instagram2.php');
         // le nom d'utilisateur existe déjà
     } else {
         // le nom d'utilisateur n'existe pas
@@ -27,10 +27,8 @@ if (!empty($_POST['username'])
         $_SESSION['user']['pseudos'] = $_POST['pseudos'];
         $_SESSION['user']['id_users'] = $userId;
         // var_dump($_SESSION);
-        header('Location: ../instagram.php');
+        header('Location: ../instagram2.php');
     }
 }
 
 ?>
-
-
