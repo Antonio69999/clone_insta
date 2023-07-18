@@ -6,7 +6,6 @@
     $name = $_FILES['file']['name'];
     $size = $_FILES['file']['size'];
     $error = $_FILES['file']['error'];
-
     $tabExtension = explode('.', $name);
     $extension = strtolower(end($tabExtension));
     //Tableau des extensions que l'on accepte
@@ -22,11 +21,11 @@
 
         move_uploaded_file($tmpName, '../upload/'.$file);
 
-        $req = $db->prepare('INSERT INTO pictures (pictures) VALUES (?)');       
-         $req->execute([
+        $req = $db->prepare('INSERT INTO pictures (pictures) VALUES (?)');  
+        $req->execute([
             $file,
-         ]);
-         header('Location:../index.php');
+        ]);
+         header('Location:../instagram.php');
         // $userId = $db->lastInsertId();
         // $_SESSION['users']['id_users'] = $userId;
     }
