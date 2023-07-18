@@ -1,5 +1,4 @@
 <?php require_once('../utils/connexion.php'); ?>
-<?php var_dump($db) ?>
 <?php session_start(); ?>
 
 
@@ -33,3 +32,5 @@ if (!empty($_POST['username'])
 }
 
 ?>
+
+
