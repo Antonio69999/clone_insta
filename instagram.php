@@ -54,11 +54,26 @@
                     <span class="number-of-likes">0</span>
                 </div>
                 <div>
-                    <form action="picture_trait.php" method="POST" enctype="multipart/form-data">
+                    <form action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
                         <label for="file">Add picture</label>
                         <input type="file" name="file">
                         <button type="submit">Submit</button>
                     </form>
+                    <?php $sql = 'SELECT * FROM `pictures`';
+
+                    // On prépare la requête
+                    $query = $db->prepare($sql);
+
+                    // On exécute la requête
+                    $query->execute();
+
+                    // On stocke le résultat dans un tableau associatif
+                    $pictures = $query->fetch();
+                    while ($picture = $query->fetch()) {
+                        // var_dump($picture);
+                        echo "<img src='./upload/" . $picture['pictures'] . "' width='600px' ><br>";
+                    }
+                    ?>
                 </div>
                 <hr class="border-dark border-3 opacity-100">
             </div>
