@@ -26,16 +26,6 @@
                         <input type="text" class="form-control" placeholder="pseudo" name="pseudo" id="">
                     </div>
 
-                    <div class="mb-2">
-                        <div class="d-flex justify-content-center my-3">
-                            <label for="avatar">Choisissez une photo de profil :</label>
-                        </div>
-
-                        <div class="d-flex justify-content-center my-3">
-                            <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-                        </div>
-                    </div>
-
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-dark btn-lg">connexion</button>
                     </div>
