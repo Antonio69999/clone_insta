@@ -25,14 +25,16 @@
             <div class="col border">
                 <div class="d-flex">
                     <img src="./SVGS/home.svg" alt="home_logo" width="60em">
-                    <h2>Home</h2>
+                    <a href="./instagram2.php">
+                        <h2>Home</h2>
+                    </a>
                 </div>
 
                 <div class="d-flex my-5">
                     <img src="./SVGS/search.svg" alt="search_logo" width="60em">
                     <h2>Search</h2>
                 </div>
-
+                
                 <div class="d-flex">
                     <img src="./SVGS/message.svg" alt="message_logo" width="60em">
                     <h2>Messages</h2>
