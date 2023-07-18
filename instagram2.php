@@ -69,7 +69,7 @@
                 <h2>Liste profil:</h2>
                 <a href="./add_avatar.php">Add profile pictures</a>
                 <?php
-                $sql = 'SELECT * FROM `avatars`';
+                $sql = 'SELECT * FROM `avatars` INNER JOIN `users` WHERE id_users = :id_users';
                 $query = $db->prepare($sql);
                 $query->execute();
                 $avatars = $query->fetchAll();
@@ -81,3 +81,6 @@
                 ?>
             </div>
         </div>
+        <script src="./script/main.js"></script>
+
+            </body>

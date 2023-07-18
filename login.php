@@ -29,8 +29,6 @@
 
                     <div class="my-3">
 
-                        <input type="text" class="form-control" placeholder="pseudo" name="pseudo" id="">
-
                         <input type="text" class="form-control" placeholder="pseudo" name="pseudos" id="">
 
                     </div>
