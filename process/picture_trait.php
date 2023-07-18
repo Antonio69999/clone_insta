@@ -18,9 +18,8 @@
         //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
         $file = $uniqueName.".".$extension;
         //$file = 5f586bf96dcd38.73540086.jpg
-
-
-        $destination = '../upload/' . $file;
+      
+              $destination = '../upload/' . $file;
 
         if (move_uploaded_file($tmpName, $destination)) {
             $req = $db->prepare('INSERT INTO pictures (pictures, id_users) VALUES (?, ?)');
