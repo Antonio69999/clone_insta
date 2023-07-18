@@ -25,7 +25,7 @@
         $req->execute([
             $file,
         ]);
-         header('Location:../instagram.php');
+         header('Location:../instagram2.php');
         // $userId = $db->lastInsertId();
         // $_SESSION['users']['id_users'] = $userId;
     }
