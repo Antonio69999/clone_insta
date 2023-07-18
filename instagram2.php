@@ -65,22 +65,29 @@
                 </div>
             </div>
 
+
+
             <div class="col border">
                 <h2>Liste profil:</h2>
                 <a href="./add_avatar.php">Add profile pictures</a>
                 <?php
-                $sql = 'SELECT * FROM `avatars` INNER JOIN `users` WHERE id_users = :id_users';
+                $sql = 'SELECT avatars.avatars, users.pseudos
+        FROM avatars
+        INNER JOIN users ON avatars.id_users = users.id_users';
                 $query = $db->prepare($sql);
                 $query->execute();
-                $avatars = $query->fetchAll();
+                $results = $query->fetchAll();
 
-                foreach ($avatars as $avatar) {
-                    echo "<img id='avatar' src='./upload_avatar/" . $avatar['avatars'] . "' class='gallery-image'>";
+                foreach ($results as $result) {
+                    echo "<div>";
+                    echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
                     echo "<br>";
+                    echo $result['pseudos'];
+                    echo "</div>";
                 }
                 ?>
             </div>
         </div>
         <script src="./script/main.js"></script>
 
-            </body>
+</body>
