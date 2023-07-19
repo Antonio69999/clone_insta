@@ -1,5 +1,7 @@
 <?php require_once ("./utils/connexion.php");
 session_start();
+var_dump($_SESSION);
+
 
 // Check if the user is authenticated (you can modify this condition based on your authentication logic)
 if (isset($_SESSION['id_users'])) {
@@ -11,6 +13,7 @@ if (isset($_SESSION['id_users'])) {
 
 
   $sql = "INSERT INTO likes (id_pictures, id_users) VALUES ($pictureId, $id_users)";
+  $query
 
   // Execute the SQL query to insert the like
   // $db should be your database connection object

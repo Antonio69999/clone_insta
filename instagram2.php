@@ -82,9 +82,22 @@
                         <div class="p-2 border">
                             <?php
                             // Identifiant unique pour chaque bouton like
-                            $likeBtnId = 'likeBtn-' .$picture['id_pictures'];
-                            echo "<svg class='heart-icon' id='$likeBtnId' width='50' height='50' viewBox='0 0 106 97' fill='none' xmlns='http://www.w3.org/2000/svg' data-picture-id='" . $picture['id_pictures'] . "' 
-                            <path class='fill-color-shape' fill-rule='evenodd' clip-rule='evenodd'
+                            $pictureId = $picture['id_pictures']; // Assuming you have a unique ID field in your pictures table
+                            $likeBtnId = 'like-btn-' . $pictureId;
+                            $likeCountId = 'like-count-' . $pictureId;
+                            echo "<svg
+                            class='heart-icon'
+                            width='50'
+                            height='55'
+                            viewBox='0 0 106 97'
+                            fill='none'
+                            xmlns='http://www.w3.org/2000/svg'
+                          >
+                    
+                            <path
+                              class='fill-color-shape'
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
                               d='M73.0406 3.04949C65.7359 2.94379 58.3559 5.38824 53.2483 12.3801C48.1271 5.39042 40.631 3.04941 33.4677 3.04941C18.2587 3.04941 3.04622 15.7081 3.04622 33.4698C3.04622 51.0995 14.3683 66.123 26.1679 76.6801C32.0812 81.9708 38.1493 86.1719 43.0557 89.0533C45.5086 90.4938 47.6791 91.6092 49.402 92.3672C50.2628 92.7459 51.0206 93.0393 51.6517 93.2395C52.2639 93.4336 52.8188 93.5607 53.2487 93.5607C53.6786 93.5607 54.2336 93.4336 54.8458 93.2395C55.4769 93.0393 56.2347 92.7459 57.0955 92.3672C58.8183 91.6092 60.9889 90.4938 63.4418 89.0533C68.3481 86.1719 74.4162 81.9708 80.3295 76.6801C92.1292 66.1229 103.451 51.0995 103.451 33.4698C103.451 15.6993 88.2313 3.26928 73.0406 3.04949Z'
                             />
                             <path
@@ -93,21 +106,21 @@
                             />
                           </svg>";
                             echo "<span class='number-of-likes'>0</span>";
-                            // echo "</div>";
                             ?>
                         </div>
 
-                    <?php  } ?>
+                    <?php } ?>
                 </div>
 
 
 
-                <div>
+                <div class="form-group">
                     <form action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
-                        <label for="file">Add picture</label>
-                        <input type="file" name="file">
-                        <button type="submit">Submit</button>
+                        <label for="file">Select File to Upload</label>
+                        <input type="file" name="file" class="form-control" />
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+
                 </div>
 
             </div>
@@ -135,7 +148,47 @@
                 ?>
             </div>
         </div>
+        <script>
+            // Variables
+            const likeBtns = document.querySelectorAll('.heart-icon');
+            const numberOfLikesElements = document.querySelectorAll('.number-of-likes');
 
-        <script src="./script/main.js"></script>
+            // Loop through each like button and count
+            likeBtns.forEach((likeBtn, index) => {
+                const numberOfLikesElement = numberOfLikesElements[index];
+                let numberOfLikes = Number.parseInt(numberOfLikesElement.textContent, 10);
+                let isLiked = false;
 
+                // Function to handle like button click
+                const likeClick = () => {
+                    if (!isLiked) {
+                        likeBtn.classList.add('isLiked');
+                        numberOfLikes++;
+                        numberOfLikesElement.textContent = numberOfLikes;
+                        isLiked = true;
+                        //
+                        // $req = $db->prepare('INSERT INTO likes (id_users, id_pictures) VALUES (:id_users, :id_pictures)');
+                        // $req->execute([
+                        //     'id_users' => $_SESSION['id_users'],
+                        //     'id_pictures' => $_POST['id_pictures']
+                        // ])
+                        // ?>
+                    } else {
+                        likeBtn.classList.remove('isLiked');
+                        numberOfLikes--;
+                        numberOfLikesElement.textContent = numberOfLikes;
+                        isLiked = false;
+                    }
+                };
+
+                // Add event listener to each like button
+                likeBtn.addEventListener('click', likeClick);
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
 </body>
+
+
+
