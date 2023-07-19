@@ -25,7 +25,9 @@
             <div class="col border">
                 <div class="d-flex">
                     <img src="./SVGS/home.svg" alt="home_logo" width="60em">
-                    <h2>Home</h2>
+                    <a href="./instagram2.php">
+                        <h2>Home</h2>
+                    </a>
                 </div>
 
                 <div class="d-flex my-5">
@@ -41,28 +43,58 @@
             </div>
 
             <div class="col-6 border">
-                <div class="container">
-                    <div>
-                        <form action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
-                            <label for="file">Add picture</label>
-                            <input type="file" name="file">
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
 
-                    <div class="image-gallery">
-                        <?php
+                <div class="d-flex flex-column my-3 border">
+
+                    <?php
+                        // requete pictures
                         $sql = 'SELECT * FROM `pictures`';
                         $query = $db->prepare($sql);
                         $query->execute();
                         $pictures = $query->fetchAll();
 
-                        foreach ($pictures as $picture) {
-                            echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
-                        }
+                        // requete avatars
+                        $sql = 'SELECT avatars.avatars, users.pseudos
+                        FROM avatars
+                        INNER JOIN users ON avatars.id_users = users.id_users';
+                        $query = $db->prepare($sql);
+                        $query->execute();
+                        $results = $query->fetchAll();
                         ?>
-                    </div>
+                            
+                        <!-- On insère les avatars et le pseudo dans la première div-->
+                        <?php foreach ($pictures as $picture) { ?>
+                            <div class="p-2"> <?php
+                                foreach ($results as $result) {
+                                echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
+                                echo $result['pseudos']; 
+                            }?>
+                            </div>
+
+                            <!-- On insère la photo publiée -->
+                            <div class="class=image-gallery p-2"> <?php
+                                echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
+                                ?>
+                            </div>
+
+                            <!-- On insère les likes et commentaires -->
+                            <div class="p-2 border">
+                                Likes / comments
+                            </div>
+                        
+                      <?php  } ?>
                 </div>
+
+
+
+                <div>
+                    <form action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
+                        <label for="file">Add picture</label>
+                        <input type="file" name="file">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
             </div>
 
 
