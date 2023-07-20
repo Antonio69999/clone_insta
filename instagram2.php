@@ -17,7 +17,7 @@
     <header>
         <div class="d-flex justify-content-center">
             <img src="./SVGS/instagram.svg" alt="logo_instagram" width="85em">
-            <img src="./assets/header_insta.png" alt="insta" width="350em">
+            <img src="./assets/logo-instarouf.png" alt="insta" width="350em">
         </div>
     </header>
 
@@ -103,6 +103,7 @@
                               fill='#e74c3c'
                             />
                           </svg>";
+
                             echo "<span class='number-of-likes'>0</span>";
 
                             ?>
@@ -123,7 +124,38 @@
                                 </div>
                             </form>
 
+                        echo "<span class='number-of-likes'>0</span>";
+
+                    ?>
+                    <div>
+                        <div class="border">
+                            <h3 class="commentaires">Commentaires</h3>
+                            <?php
+                                $sql = 'SELECT * FROM comments WHERE id_pictures = :id_pictures';
+                            $query = $db->prepare($sql);
+                            $query->bindValue(':id_pictures', $post['id_pictures'], PDO::PARAM_STR);
+                            $query->execute();
+                            $posts = $query->fetchAll();
+
+                            foreach ($posts as $comment){
+                                echo $comment['comments'] . '<br>';
+                        }?>
                         </div>
+                    </div>
+
+
+                        </div>
+
+                 
+                        <input type="hidden" name="dates" value="<?php echo date('H:i:s'); ?>">
+                        <input type="hidden" name="id_pictures" value="<?php echo $post['id_pictures']; ?>">
+                        <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users']; ?>">
+                        <div class="">
+                            <button class="btn btn-primary" type="submit">Envoyé</button>
+                        </div>
+                    </form>
+                    <p>id_pictures: <?php echo $post['id_pictures']; ?></p>
+
 
                     <?php  } ?>
                 </div>
