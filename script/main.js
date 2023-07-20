@@ -1,29 +1,22 @@
-
-// Variables
-const likeBtns = document.querySelectorAll('.heart-icon');
-const numberOfLikesElements = document.querySelectorAll('.number-of-likes');
-
-// Loop through each like button and count
-likeBtns.forEach((likeBtn, index) => {
-  const numberOfLikesElement = numberOfLikesElements[index];
+const likeClick = (event) => {
+  const likeBtn = event.currentTarget;
+  const numberOfLikesElement = likeBtn.nextElementSibling;
   let numberOfLikes = Number.parseInt(numberOfLikesElement.textContent, 10);
-  let isLiked = false;
+  let isLiked = likeBtn.classList.contains('isLiked');
 
-  // Function to handle like button click
-  const likeClick = () => {
-    if (!isLiked) {
-      likeBtn.classList.add('isLiked');
-      numberOfLikes++;
-      numberOfLikesElement.textContent = numberOfLikes;
-      isLiked = true;
-    } else {
-      likeBtn.classList.remove('isLiked');
-      numberOfLikes--;
-      numberOfLikesElement.textContent = numberOfLikes;
-      isLiked = false;
-    }
-  };
+  if (!isLiked) {
+    likeBtn.classList.add('isLiked');
+    numberOfLikes++;
+    numberOfLikesElement.textContent = numberOfLikes;
+  } else {
+    likeBtn.classList.remove('isLiked');
+    numberOfLikes--;
+    numberOfLikesElement.textContent = numberOfLikes;
+  }
+};
 
-  // Add event listener to each like button
+// Get all the like buttons and add event listeners to each
+const likeButtons = document.querySelectorAll('.heart-icon');
+likeButtons.forEach((likeBtn) => {
   likeBtn.addEventListener('click', likeClick);
 });
