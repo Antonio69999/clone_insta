@@ -48,49 +48,52 @@
                 <div class="d-flex flex-column my-3 border">
 
                     <?php
-                        // requete pictures
-                        $sql = 'SELECT * FROM `pictures`';
-                        $query = $db->prepare($sql);
-                        $query->execute();
-                        $pictures = $query->fetchAll();
+                    // requete pictures
+                    $sql = 'SELECT * FROM `pictures`';
+                    $query = $db->prepare($sql);
+                    $query->execute();
+                    $pictures = $query->fetchAll();
 
-                        // requete avatars
-                        $sql = 'SELECT avatars.avatars, users.pseudos
+                    // requete avatars
+                    $sql = 'SELECT avatars.avatars, users.pseudos
                         FROM avatars
                         INNER JOIN users ON avatars.id_users = users.id_users';
-                        $query = $db->prepare($sql);
-                        $query->execute();
-                        $results = $query->fetchAll();
-                        ?>
-                            
-                        <!-- On insère les avatars et le pseudo dans la première div-->
-                        <?php foreach ($pictures as $picture) { ?>
-                            <div class="p-2"> <?php
-                                foreach ($results as $result) {
-                                echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
-                                echo $result['pseudos']; 
-                            }?>
-                            </div>
+                    $query = $db->prepare($sql);
+                    $query->execute();
+                    $results = $query->fetchAll();
+                    ?>
 
-                            <!-- On insère la photo publiée -->
-                            <div class="class=image-gallery p-2"> <?php
-                                echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
-                                ?>
-                            </div>
+                    <!-- On insère les avatars et le pseudo dans la première div-->
+                    <?php foreach ($pictures as $picture) { ?>
+                        <div class="p-2"> <?php
+                                            foreach ($results as $result) {
+                                                echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
+                                                echo $result['pseudos'];
+                                            } ?>
+                        </div>
 
-                            <!-- On insère les likes et commentaires -->
-                            <div class="p-2 border">
-                                <?php
-                                                      echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
-                            echo "<div class='block'>";
+                        <!-- On insère la photo publiée -->
+                        <div class="class=image-gallery p-2"> <?php
+                                                                echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
+                                                                ?>
+                        </div>
+
+                        <!-- On insère les likes et commentaires -->
+                        <div class="p-2 border">
+                            <?php
+                            // Identifiant unique pour chaque bouton like
+                            $pictureId = $picture['id_pictures']; // Assuming you have a unique ID field in your pictures table
+                            $likeBtnId = 'like-btn-' . $pictureId;
+                            $likeCountId = 'like-count-' . $pictureId;
                             echo "<svg
                             class='heart-icon'
                             width='50'
-                            height='50'
+                            height='55'
                             viewBox='0 0 106 97'
                             fill='none'
                             xmlns='http://www.w3.org/2000/svg'
                           >
+                    
                             <path
                               class='fill-color-shape'
                               fill-rule='evenodd'
@@ -102,22 +105,23 @@
                               fill='#e74c3c'
                             />
                           </svg>";
-                            echo "<span class'number-of-likes'>0</span>";
-                            echo "</div>";
-                                ?>
-                            </div>
-                        
-                      <?php  } ?>
+                            echo "<span class='number-of-likes'>0</span>";
+                            ?>
+                        </div>
+
+                    <?php } ?>
                 </div>
 
 
 
-                <div>
-                    <form action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
-                        <label for="file">Add picture</label>
-                        <input type="file" name="file">
-                        <button type="submit">Submit</button>
+                <div class="form-group">
+                    <form id="upload_form" action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
+                        <label for="file">Select File to Upload</label>
+                        <input type="file" name="file" class="form-control" />
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <span id="upload_notification"></span>
                     </form>
+
                 </div>
 
             </div>
@@ -145,6 +149,11 @@
                 ?>
             </div>
         </div>
-        <script src="./script/main.js"></script>
 
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
 </body>
+
+
+
