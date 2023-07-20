@@ -80,10 +80,10 @@
                                                                 ?>
                         </div>
 
-                <!-- On insère les likes et commentaires -->
-                <div class="p-2 border">
-                    <?php
-                        echo "<svg
+                        <!-- On insère les likes et commentaires -->
+                        <div class="p-2 border">
+                            <?php
+                            echo "<svg
                             class='heart-icon'
                             width='50'
                             height='55'
@@ -103,6 +103,27 @@
                               fill='#e74c3c'
                             />
                           </svg>";
+
+                            echo "<span class='number-of-likes'>0</span>";
+
+                            ?>
+            
+        
+
+                            <?php ?>
+                            <form action="./process/comment_trait.php" method="post">
+                                <h3>Saisissez votre commentaire</h3>
+                                <div class="">
+                                    <textarea name="comments" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <input type="hidden" name="dates" value="<?php echo date('H:i:s'); ?>">
+                                <input type="hidden" name="id_pictures" value="<?php echo $post['id_pictures']; ?>">
+                                <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users']; ?>">
+                                <div class="">
+                                    <button class="btn btn-primary" type="submit">Envoyé</button>
+                                </div>
+                            </form>
+
                         echo "<span class='number-of-likes'>0</span>";
 
                     ?>
@@ -122,12 +143,10 @@
                         </div>
                     </div>
 
-                    <?php ?>
-                    <form action="./process/comment_trait.php" method="post">
-                        <h3>Saisissez votre commentaire</h3>
-                        <div class="">
-                            <textarea name="comments" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
                         </div>
+
+                 
                         <input type="hidden" name="dates" value="<?php echo date('H:i:s'); ?>">
                         <input type="hidden" name="id_pictures" value="<?php echo $post['id_pictures']; ?>">
                         <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users']; ?>">
@@ -137,53 +156,52 @@
                     </form>
                     <p>id_pictures: <?php echo $post['id_pictures']; ?></p>
 
+
+                    <?php  } ?>
                 </div>
 
-            <?php  } ?>
+
+
+                <div class="form-group">
+                    <form id="upload_form" action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
+                        <label for="file">Select File to Upload</label>
+                        <input type="file" name="file" class="form-control" />
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <span id="upload_notification"></span>
+                    </form>
+
+                </div>
+
             </div>
 
 
 
-            <div class="form-group">
-                <form id="upload_form" action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
-                    <label for="file">Select File to Upload</label>
-                    <input type="file" name="file" class="form-control" />
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <span id="upload_notification"></span>
-                </form>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="col border">
-            <h2>Liste profil:</h2>
-            <h3><a href="./user_profil.php">Mon profil</a></h3>
-            <a href="./add_avatar.php">Add profile pictures</a>
-            <?php
-            $sql = 'SELECT avatars.avatars, users.pseudos
+            <div class="col border">
+                <h2>Liste profil:</h2>
+                <h3><a href="./user_profil.php">Mon profil</a></h3>
+                <a href="./add_avatar.php">Add profile pictures</a>
+                <?php
+                $sql = 'SELECT avatars.avatars, users.pseudos
         FROM avatars
         INNER JOIN users ON avatars.id_users = users.id_users';
-            $query = $db->prepare($sql);
-            $query->execute();
-            $results = $query->fetchAll();
+                $query = $db->prepare($sql);
+                $query->execute();
+                $results = $query->fetchAll();
 
-            foreach ($results as $result) {
-                echo "<div>";
-                echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
-                echo $result['pseudos'];
-                echo "</div>";
-            }
-            ?>
+                foreach ($results as $result) {
+                    echo "<div>";
+                    echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
+                    echo $result['pseudos'];
+                    echo "</div>";
+                }
+                ?>
+            </div>
         </div>
-    </div>
 
-    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="./script/main.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="./script/main.js"></script>
 
 
 </body>
