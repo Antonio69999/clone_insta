@@ -67,19 +67,18 @@
                     ?>
 
                     <?php foreach ($posts as $post) { ?>
-                        <?php
-                            $_SESSION["id_pictures"] = $post["id_pictures"];
-                            ?> <div class="p-2"> <?php
-                                                echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' class='gallery-image'>";
-                                                echo $post['pseudos'];
-                                                ?>
-                </div>
+                        <!-- On insère les avatars et le pseudo dans la première div-->
+                        <div class="p-2"> <?php
+                                            echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' width='30px' class='gallery-image'>";
+                                            echo $post['pseudos'];
+                                            ?>
+                        </div>
 
-                <!-- On insère la photo publiée -->
-                <div class="class=image-gallery p-2"> <?php
-                                                        echo "<img src='./upload/" . $post['pictures'] . "' width='500px' class='gallery-image'>";
-                                                        ?>
-                </div>
+                        <!-- On insère la photo publiée -->
+                        <div class="class=image-gallery p-2"> <?php
+                                                                echo "<img src='./upload/" . $post['pictures'] . "' width='500px' class='gallery-image'>";
+                                                                ?>
+                        </div>
 
                 <!-- On insère les likes et commentaires -->
                 <div class="p-2 border">
