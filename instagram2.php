@@ -84,10 +84,7 @@
                         <!-- On insère les likes et commentaires -->
                         <div class="p-2 border">
                             <?php
-                            // Identifiant unique pour chaque bouton like
-                            $pictureId = $picture['id_pictures']; // Assuming you have a unique ID field in your pictures table
-                            $likeBtnId = 'like-btn-' . $pictureId;
-                            $likeCountId = 'like-count-' . $pictureId;
+
                             echo "<svg
                             class='heart-icon'
                             width='50'
