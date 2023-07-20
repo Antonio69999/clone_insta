@@ -135,7 +135,7 @@
                             <button class="btn btn-primary" type="submit">Envoyé</button>
                         </div>
                     </form>
-                    <p>id_pictures: <?php echo $post['id_pictures']; ?></p>
+
 
                 </div>
 
