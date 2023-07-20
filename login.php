@@ -21,7 +21,7 @@
                         <h1>BIENVENUE SUR</h1>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <img src="./assets/logo-insta.png" alt="logo Instagram" class="instagram-logo">
+                        <img src="./assets/arouf.png" alt="logo Instagram" class="instagram-logo">
                     </div>
                     <div class="my-3">
                         <input type="text" class="form-control" placeholder="nom d'utilisateur" name="username" id="">
