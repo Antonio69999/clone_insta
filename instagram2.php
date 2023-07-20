@@ -70,14 +70,14 @@
                     <?php foreach ($posts as $post) { ?>
                         <!-- On insère les avatars et le pseudo dans la première div-->
                         <div class="p-2"> <?php
-                                            echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' class='gallery-image'>";
+                                            echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' width='30px' class='gallery-image'>";
                                             echo $post['pseudos'];
                                             ?>
                         </div>
 
                         <!-- On insère la photo publiée -->
                         <div class="class=image-gallery p-2"> <?php
-                                                                echo "<img src='./upload/" . $post['pictures'] . "' width='300px' class='gallery-image'>";
+                                                                echo "<img src='./upload/" . $post['pictures'] . "' width='500px' class='gallery-image'>";
                                                                 ?>
                         </div>
 
