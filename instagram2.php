@@ -114,8 +114,8 @@
                             <textarea name="comments" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <input type="hidden" name="dates" value="<?php echo date('H:i:s'); ?>">
-                        <input type="hidden" name="id_pictures" value="<?php $post['id_pictures'] ?>">
-                        <input type="hidden" name="id_users" value="<?php echo $post['id_pictures']; ?>">
+                        <input type="hidden" name="id_pictures" value="id_pictures">
+                        <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users']; ?>">
                         <div class="">
                             <button class="btn btn-primary" type="submit">Envoyé</button>
                         </div>
