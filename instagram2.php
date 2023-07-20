@@ -41,6 +41,13 @@
                     <h2>Messages</h2>
                 </div>
 
+                <div class="d-flex my-5">
+                    <img src="./SVGS/deconnexion.svg" alt="deconnexion_logo" width="60em">
+                    <form action="./process/deconnexion.php">
+                        <input type="submit" value="Déconnexion" />
+                    </form>
+                </div>
+
             </div>
 
             <div class="col-6 border">
@@ -48,33 +55,29 @@
                 <div class="d-flex flex-column my-3 border">
 
                     <?php
-                    // requete pictures
-                    $sql = 'SELECT * FROM `pictures`';
-                    $query = $db->prepare($sql);
-                    $query->execute();
-                    $pictures = $query->fetchAll();
 
                     // requete avatars
-                    $sql = 'SELECT avatars.avatars, users.pseudos
-                        FROM avatars
-                        INNER JOIN users ON avatars.id_users = users.id_users';
+                    $sql = 'SELECT pictures, pseudos, avatars FROM `pictures` 
+                        JOIN users ON users.id_users = pictures.id_users
+                        JOIN avatars ON avatars.id_users = pictures.id_users';
                     $query = $db->prepare($sql);
                     $query->execute();
-                    $results = $query->fetchAll();
+                    $posts = $query->fetchAll();
+
                     ?>
 
-                    <!-- On insère les avatars et le pseudo dans la première div-->
-                    <?php foreach ($pictures as $picture) { ?>
+
+                    <?php foreach ($posts as $post) { ?>
+                        <!-- On insère les avatars et le pseudo dans la première div-->
                         <div class="p-2"> <?php
-                                            foreach ($results as $result) {
-                                                echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
-                                                echo $result['pseudos'];
-                                            } ?>
+                                            echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' class='gallery-image'>";
+                                            echo $post['pseudos'];
+                                            ?>
                         </div>
 
                         <!-- On insère la photo publiée -->
                         <div class="class=image-gallery p-2"> <?php
-                                                                echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' class='gallery-image'>";
+                                                                echo "<img src='./upload/" . $post['pictures'] . "' width='300px' class='gallery-image'>";
                                                                 ?>
                         </div>
 
@@ -105,11 +108,12 @@
                               fill='#e74c3c'
                             />
                           </svg>";
-                            echo "<span class='number-of-likes'>0</span>";
+                            echo "<span class'number-of-likes'>0</span>";
+
                             ?>
                         </div>
 
-                    <?php } ?>
+                    <?php  } ?>
                 </div>
 
 
@@ -130,6 +134,7 @@
 
             <div class="col border">
                 <h2>Liste profil:</h2>
+                <h3><a href="./user_profil.php">Mon profil</a></h3>
                 <a href="./add_avatar.php">Add profile pictures</a>
                 <?php
                 $sql = 'SELECT avatars.avatars, users.pseudos
@@ -142,7 +147,6 @@
                 foreach ($results as $result) {
                     echo "<div>";
                     echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
-                    echo "<br>";
                     echo $result['pseudos'];
                     echo "</div>";
                 }
