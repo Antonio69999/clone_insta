@@ -1,14 +1,14 @@
 <?php
 session_start();
 require_once('../utils/connexion.php');
-var_dump($_SESSION["id_pictures"]);
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     // Get the form data
     $comments = $_POST['comments'];
     $dates = $_POST['dates'];
-    $id_pictures = $_SESSION['id_pictures'];
+    $id_pictures = $_POST['id_pictures'];
     $id_users = $_POST['id_users'];
 
     // ... (existing code)
