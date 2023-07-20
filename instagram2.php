@@ -115,10 +115,11 @@
 
 
                 <div class="form-group">
-                    <form action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
+                    <form id="upload_form" action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
                         <label for="file">Select File to Upload</label>
                         <input type="file" name="file" class="form-control" />
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <span id="upload_notification"></span>
                     </form>
 
                 </div>
@@ -148,43 +149,7 @@
                 ?>
             </div>
         </div>
-        <script>
-            // Variables
-            const likeBtns = document.querySelectorAll('.heart-icon');
-            const numberOfLikesElements = document.querySelectorAll('.number-of-likes');
 
-            // Loop through each like button and count
-            likeBtns.forEach((likeBtn, index) => {
-                const numberOfLikesElement = numberOfLikesElements[index];
-                let numberOfLikes = Number.parseInt(numberOfLikesElement.textContent, 10);
-                let isLiked = false;
-
-                // Function to handle like button click
-                const likeClick = () => {
-                    if (!isLiked) {
-                        likeBtn.classList.add('isLiked');
-                        numberOfLikes++;
-                        numberOfLikesElement.textContent = numberOfLikes;
-                        isLiked = true;
-                        //
-                        // $req = $db->prepare('INSERT INTO likes (id_users, id_pictures) VALUES (:id_users, :id_pictures)');
-                        // $req->execute([
-                        //     'id_users' => $_SESSION['id_users'],
-                        //     'id_pictures' => $_POST['id_pictures']
-                        // ])
-                        // ?>
-                    } else {
-                        likeBtn.classList.remove('isLiked');
-                        numberOfLikes--;
-                        numberOfLikesElement.textContent = numberOfLikes;
-                        isLiked = false;
-                    }
-                };
-
-                // Add event listener to each like button
-                likeBtn.addEventListener('click', likeClick);
-            });
-        </script>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
