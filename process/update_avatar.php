@@ -30,7 +30,7 @@
             $req->bindValue(':avatars', $file);
             $req->bindValue(':id_users', $_SESSION['user']['id_users']);
             $req->execute();
-            header('Location: ../instagram2.php');
+            header('Location: ../user_profil.php');
             exit();
         } else {
             echo "Error: Failed to move the uploaded file.";
