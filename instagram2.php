@@ -161,7 +161,11 @@
         <div class="col border">
             <h2>Liste profil:</h2>
             <h3><a href="./user_profil.php">Mon profil</a></h3>
-            <a href="./add_avatar.php">Add profile pictures</a>
+            <form action="./process/avatar_trait.php" method="POST" enctype="multipart/form-data">
+                    <label for="file">Change profil picture</label>
+                    <input type="file" name="file">
+                    <button type="submit">Submit</button>
+            </form>
             <?php
             $sql = 'SELECT avatars.avatars, users.pseudos
         FROM avatars

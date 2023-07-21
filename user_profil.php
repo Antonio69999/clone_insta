@@ -46,10 +46,10 @@ $user = $query->fetchAll();
                     $request->execute();
                     $avatar = $request->fetch();
                     echo "<img id='avatar' src='./upload_avatar/" . $avatar['avatars'] . "' width='30px' class='gallery-image'>";
-                    // echo "<img src='./upload/" . $post['pictures'] . "' width='300px' class='gallery-image'>";
+                    ?>
 
 
-
+                    <?php
                     $request = $db->prepare('SELECT * FROM users WHERE pseudos = :pseudos');
                     $request->bindValue(':pseudos', $pseudo, PDO::PARAM_STR);
                     $request->execute();
