@@ -28,4 +28,20 @@
   border: 2px solid black;
 }
 
+.homelink {
+  color: black;
+  text-decoration: none;
+}
 
+.homelink:hover {
+  text-decoration: underline;
+}
+
+.profilelink {
+  color: black;
+  text-decoration: none;
+}
+
+.profilelink:hover {
+  text-decoration: underline;
+}

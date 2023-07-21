@@ -45,7 +45,7 @@ $user = $query->fetchAll();
                     $request->bindValue(':id_users', $idUser, PDO::PARAM_STR);
                     $request->execute();
                     $avatar = $request->fetch();
-                    echo "<img id='avatar' src='./upload_avatar/" . $avatar['avatars'] . "' width='30px' class='gallery-image'>";
+                    echo "<img id='avatar' src='./upload_avatar/" . $avatar['avatars'] . "' width='30px' class='rounded-circle'>";
                     ?>
 
 

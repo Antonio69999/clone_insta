@@ -15,9 +15,13 @@
 
 <body>
     <header>
-        <div class="d-flex justify-content-center">
-            <img src="./SVGS/instagram.svg" alt="logo_instagram" width="85em">
-            <img src="./assets/logo-instarouf.png" alt="insta" width="350em">
+        <div class="d-flex justify-content-center mb-1">
+            <div class="d-flex justify-content-center me-3">
+                <img src="./SVGS/instagram.svg" alt="logo_instagram" width="85em">
+            </div>
+            <div class="d-flex justify-content-center">
+                <img src="./assets/logo-instarouf.png" alt="insta" width="350em">
+            </div>
         </div>
     </header>
 
@@ -25,27 +29,34 @@
         <div class="row">
             <div class="col border">
                 <div class="d-flex">
-                    <img src="./SVGS/home.svg" alt="home_logo" width="60em">
-                    <a href="./instagram2.php">
-                        <h2>Home</h2>
-                    </a>
+                    <div class="me-3">
+                        <a href="./instagram2.php"><img src="./SVGS/home.svg" alt="home_logo" width="40em"></a>
+                    </div>
+                    <div class="pt-1">
+                        <a href="./instagram2.php" class="homelink">
+                            <h3>Accueil</h3>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="d-flex my-5">
-                    <img src="./SVGS/search.svg" alt="search_logo" width="60em">
-                    <h2>Search</h2>
-                </div>
-
-                <div class="d-flex">
-                    <img src="./SVGS/message.svg" alt="message_logo" width="60em">
-                    <h2>Messages</h2>
+                    <div class="me-3">
+                        <a href="./user_profil.php"><img src="./SVGS/person-profile-user-account-group-people-svgrepo-com.svg" alt="search_logo" width="40em"></a>
+                    </div>
+                    <div class="pt-1">
+                        <h3><a href="./user_profil.php" class="profilelink">Mon profil</a></h3>
+                    </div>
                 </div>
 
                 <div class="d-flex my-5">
-                    <img src="./SVGS/deconnexion.svg" alt="deconnexion_logo" width="60em">
-                    <form action="./process/deconnexion.php">
-                        <input type="submit" value="Déconnexion" />
-                    </form>
+                    <div class="me-2">
+                        <img src="./SVGS/deconnexion.svg" alt="deconnexion_logo" width="40em">
+                    </div>
+                    <div class="pt-1">
+                        <form action="./process/deconnexion.php">
+                            <input type="submit" class="btn btn-danger" value="Déconnexion" />
+                        </form>
+                    </div>
                 </div>
 
             </div>
@@ -68,10 +79,11 @@
 
                     <?php foreach ($posts as $post) { ?>
                         <!-- On insère les avatars et le pseudo dans la première div-->
-                        <div class="p-2"> <?php
-                                            echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' width='30px' class='gallery-image'>";
-                                            echo $post['pseudos'];
-                                            ?>
+                        <div class="p-2">
+                            <?php
+                            echo "<img id='avatar' src='./upload_avatar/" . $post['avatars'] . "' width='50px' height='50px' class='rounded-circle'>";
+                            echo $post['pseudos'];
+                            ?>
                         </div>
 
                         <!-- On insère la photo publiée -->
@@ -159,28 +171,32 @@
 
 
             <div class="col-3 border">
-                <h2>Liste profil:</h2>
-                <h3><a href="./user_profil.php">Mon profil</a></h3>
+                <div class="border-bottom my-3">
+                    <h2>Liste profil:</h2>
+                </div>
+
                 <form action="./process/avatar_trait.php" method="POST" enctype="multipart/form-data">
                     <label for="file">Ajouter un photo de profil</label>
                     <input type="file" name="file">
-                    <button type="submit">Submit</button>
+                    <div class="my-4">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </div>
                 </form>
-                 <?php
-                        $sql = 'SELECT avatars.avatars, users.pseudos
+                <?php
+                $sql = 'SELECT avatars.avatars, users.pseudos
         FROM avatars
         INNER JOIN users ON avatars.id_users = users.id_users';
-                        $query = $db->prepare($sql);
-                        $query->execute();
-                        $results = $query->fetchAll();
+                $query = $db->prepare($sql);
+                $query->execute();
+                $results = $query->fetchAll();
 
-                        foreach ($results as $result) {
-                            echo "<div>";
-                            echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' class='gallery-image'>";
-                            echo $result['pseudos'];
-                            echo "</div>";
-                        }
-                        ?>
+                foreach ($results as $result) {
+                    echo "<div class = ''>";
+                    echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' width='50px' height='50px' class='rounded-circle'>";
+                    echo $result['pseudos'];
+                    echo "</div>";
+                }
+                ?>
             </div>
         </div>
 
