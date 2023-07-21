@@ -122,14 +122,15 @@
                                 <div class="border">
                                     <h3 class="commentaires">Commentaires</h3>
                                     <?php
-                                    $sql = 'SELECT * FROM comments WHERE id_pictures = :id_pictures';
+                                    $sql = 'SELECT * FROM comments WHERE id_pictures = :id_pictures
+                                    JOIN users ON users.pseudos = comments.id_users';
                                     $query = $db->prepare($sql);
                                     $query->bindValue(':id_pictures', $post['id_pictures'], PDO::PARAM_STR);
                                     $query->execute();
                                     $posts = $query->fetchAll();
 
                                     foreach ($posts as $comment) {
-                                        echo $comment['comments'] . '<br>';
+                                        echo $comment['pseudos'] .$comment['comments'] . '<br>';
                                     } ?>
                                 </div>
                             </div>
