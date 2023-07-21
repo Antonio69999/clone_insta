@@ -158,7 +158,7 @@
 
 
 
-            <div class="col border">
+            <div class="col-3 border">
                 <h2>Liste profil:</h2>
                 <h3><a href="./user_profil.php">Mon profil</a></h3>
                 <form action="./process/avatar_trait.php" method="POST" enctype="multipart/form-data">
