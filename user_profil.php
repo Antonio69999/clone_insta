@@ -1,5 +1,5 @@
 <?php require_once("./utils/connexion.php"); ?>
-<?php session_start(); 
+<?php session_start();
 $idUser = $_SESSION['user']['id_users'];
 $pseudo = $_SESSION['user']['pseudos'];
 ?>
@@ -30,7 +30,7 @@ $user = $query->fetchAll();
                     <div class="align-items-start">
                         <a href="./instagram2.php">Accueil</a>
                     </div>
-                <?php
+                    <?php
                     $request = $db->prepare('SELECT * FROM users WHERE id_users = :id_users');
                     $request->bindValue(':id_users', $idUser, PDO::PARAM_STR);
                     $request->execute();
@@ -59,6 +59,15 @@ $user = $query->fetchAll();
 
 
                 </div>
+
+                <div class="p-2 border">
+                    <form action="./process/update_avatar.php" method="POST" enctype="multipart/form-data">
+                        <label for="file">Update Avatar</label>
+                        <input type="file" name="file">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
                 <div class="row p-0 border">
 
                     <?php
@@ -71,7 +80,6 @@ $user = $query->fetchAll();
                         echo "<div class='col-4 p-0'>";
                         echo "<img src='./upload/" . $picture['pictures'] . "' width='300px' height='300px' class='gallery-image'>";
                         echo "</div>";
-                        
                     }
                     ?>
 
