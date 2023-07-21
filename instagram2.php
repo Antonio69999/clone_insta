@@ -130,7 +130,7 @@
                                     $posts = $query->fetchAll();
 
                                     foreach ($posts as $comment) {
-                                        echo $comment['pseudos']." : ".$comment['comments'] . '<br>';
+                                        echo $comment['pseudos'] . " : " . $comment['comments'] . '<br>';
                                     } ?>
                                 </div>
                             </div>
@@ -156,17 +156,6 @@
                 </div>
 
 
-
-                <div class="form-group">
-                    <form id="upload_form" action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
-                        <label for="file">Select File to Upload</label>
-                        <input type="file" name="file" class="form-control" />
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <span id="upload_notification"></span>
-                    </form>
-
-                </div>
-
             </div>
 
 
@@ -176,13 +165,26 @@
                     <h2>Liste profil:</h2>
                 </div>
 
-                <form action="./process/avatar_trait.php" method="POST" enctype="multipart/form-data">
-                    <label for="file">Ajouter un photo de profil</label>
-                    <input type="file" name="file">
-                    <div class="my-4">
-                        <button type="submit" class="btn btn-dark">Submit</button>
-                    </div>
-                </form>
+                <div class="form-group border-bottom mb-4">
+                    <form id="upload_form" action="./process/picture_trait.php" method="POST" enctype="multipart/form-data">
+                        <label for="file"><h5>Publier une photo</h5></label>
+                        <input type="file" name="file" class="form-control" />
+                        <div class="my-2">
+                            <button type="submit" class="btn btn-primary">Publier</button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="form-group border-bottom mb-4">
+                    <form action="./process/avatar_trait.php" method="POST" enctype="multipart/form-data">
+                        <label for="file"><h5>Ajouter un photo de profil</h5></label>
+                        <input type="file" name="file">
+                        <div class="my-2">
+                            <button type="submit" class="btn btn-dark">Ajouter</button>
+                        </div>
+                    </form>
+                </div>
                 <?php
                 $sql = 'SELECT avatars.avatars, users.pseudos
         FROM avatars
@@ -192,7 +194,7 @@
                 $results = $query->fetchAll();
 
                 foreach ($results as $result) {
-                    echo "<div class = ''>";
+                    echo "<div class = 'd-flex justify-content-start my-2'>";
                     echo "<img id='avatar' src='./upload_avatar/" . $result['avatars'] . "' width='50px' height='50px' class='rounded-circle'>";
                     echo $result['pseudos'];
                     echo "</div>";
