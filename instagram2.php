@@ -17,10 +17,10 @@
     <header>
         <div class="d-flex justify-content-center mb-1">
             <div class="d-flex justify-content-center me-3">
-                <img src="./SVGS/instagram.svg" alt="logo_instagram" width="85em">
+                <!-- <img src="./SVGS/instagram.svg" alt="logo_instagram" width="85em"> -->
             </div>
             <div class="d-flex justify-content-center">
-                <img src="./assets/logo-instarouf.png" alt="insta" width="350em">
+                <img src="./assets/instagram.jpg" alt="insta" width="350em">
             </div>
         </div>
     </header>
